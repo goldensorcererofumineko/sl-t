@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>sleep</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="inner_o">
+        <div class="nav">
+          <div class="calendar-container">
+          <%= month_calendar sleep_ms: @sleep_ms do |date, sleep_ms| %>
+          <%= date.day %>
+          <% end %>
+          </div>
+        <h1 class="app-title">睡眠の重要性</h1>
+          <div class="nav__left">
+            <%= link_to image_tag("sleep_man.png", class: :"logo rotate-icon"), root_path %>
+          </div>
+          <% if user_signed_in? %>
+            <div class="nav__right">
+              <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: :nav__logout %>
+              <%= link_to "睡眠管理", new_sleep_m_path, class: :nav__btn %>
+            </div> 
+            <% else %>
+            <div class="nav__right">
+              <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
+              <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </header>
+      <%= yield %>
+  </body>
+</html>
