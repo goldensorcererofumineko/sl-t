@@ -14,7 +14,6 @@
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
 | start_time  | datetime   |                                |
-| record_date | date       |                                |
 | set_time    | time       |                                |
 | end_time    | time       |                                |
 | quality     | string     | null: false                    |
