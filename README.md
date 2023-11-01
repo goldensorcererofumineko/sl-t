@@ -11,14 +11,15 @@
 
 ## sleep_records テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| start_time | datetime   |                                |
-| set_time   | datetime   |                                |
-| end_time   | datetime   |                                |
-| quality    | string     | null: false                    |
-| memo       | text       |                                |
-| user       | references | null: false, foreign_key: true |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| start_time  | datetime   |                                |
+| record_date | date       |                                |
+| set_time    | time       |                                |
+| end_time    | time       |                                |
+| quality     | string     | null: false                    |
+| memo        | text       |                                |
+| user        | references | null: false, foreign_key: true |
 
   belongs_to :user
 

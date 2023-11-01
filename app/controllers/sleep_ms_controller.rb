@@ -54,7 +54,7 @@ class SleepMsController < ApplicationController
   end
 
   def sleep_params
-    params.require(:sleep_m).permit(:set_time, :end_time, :quality, :memo).merge(user_id: current_user.id)
+    params.require(:sleep_m).permit(:record_date, :set_time, :end_time, :quality, :memo).merge(user_id: current_user.id)
   end
 
 end

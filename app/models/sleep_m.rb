@@ -10,4 +10,14 @@ class SleepM < ApplicationRecord
   validates :quality, presence: true
   validates :set_time, presence: true
   validates :end_time, presence: true
+  validate :start_time_must_be_earlier_than_end_time
+
+  private
+
+  def start_time_must_be_earlier_than_end_time
+    return unless set_time && end_time
+    if set_time >= end_time
+      errors.add(:set_time, "は終了時間よりも早い時間に設定してください")
+    end
+  end
 end

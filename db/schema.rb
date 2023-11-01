@@ -13,8 +13,9 @@
 ActiveRecord::Schema[7.0].define(version: 2023_10_27_011001) do
   create_table "sleep_ms", charset: "utf8", force: :cascade do |t|
     t.datetime "start_time"
-    t.datetime "set_time"
-    t.datetime "end_time"
+    t.date "record_date"
+    t.time "set_time"
+    t.time "end_time"
     t.string "quality", null: false
     t.text "memo"
     t.bigint "user_id", null: false
