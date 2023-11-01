@@ -9,8 +9,8 @@
             <% date_shown = true %>
           <% end %>
           <div class="sleep-details">
-            <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time %></p>
-            <p><strong>睡眠終了時間:</strong> <%= sleep_m.end_time %></p>
+            <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time.strftime('%H:%M:%S') %></p>
+            <p><strong>睡眠終了時間:</strong> <%= sleep_m.end_time.strftime('%H:%M:%S') %></p>
             <p><strong>睡眠の質:</strong> <%= sleep_m.quality %></p>
             <p><strong>メモ:</strong> <%= sleep_m.memo %></p>
             

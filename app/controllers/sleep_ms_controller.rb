@@ -42,7 +42,7 @@ class SleepMsController < ApplicationController
 
   def update
     @sleep_m = SleepM.find(params[:id])
-    if sleep_m.update(sleep_params)
+    if @sleep_m.update(sleep_params)
       redirect_to root_path
     else
       render :edit
