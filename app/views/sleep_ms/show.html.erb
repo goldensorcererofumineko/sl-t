@@ -2,11 +2,6 @@
   <div class="inner">
     <div class="sleep-details">
       <h2>睡眠記録詳細</h2>
-        <% date_shown = false %>
-        <% @sleep_ms_data.each do |sleep_m| %>
-          <% if !date_shown %>
-            <h3>日付: <%= sleep_m.record_date %></h3>
-            <% date_shown = true %>
           <% end %>
           <div class="sleep-details">
             <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time.strftime('%H:%M:%S') %></p>

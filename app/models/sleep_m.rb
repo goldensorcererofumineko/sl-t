@@ -11,7 +11,6 @@ class SleepM < ApplicationRecord
   validates :set_time, presence: true
   validates :end_time, presence: true
   validate :start_time_must_be_earlier_than_end_time
-  validate :validate_unique_sleep_times
 
   private
 
@@ -22,19 +21,6 @@ class SleepM < ApplicationRecord
     end
   end
 
-  def validate_unique_sleep_times
-    # 同じ日付の記録を検索
-    same_date_records = SleepM.where(record_date: self.record_date)
-
-    same_date_records.each do |record|
-      next if record == self # 自身のレコードはチェック対象から除外
-
-      if overlaps?(record)
-        errors.add(:base, "同じ日に重複した睡眠時間が存在します")
-        break
-      end
-    end
-  end
   def overlaps?(other_record)
     (self.set_time <= other_record.end_time) && (self.end_time >= other_record.set_time)
   end
