@@ -2,14 +2,23 @@
   <div class="inner">
     <div class="sleep-details">
       <h2>睡眠記録詳細</h2>
-      <p><strong>睡眠開始時間:</strong> <%= @sleep_m.set_time %></p>
-      <p><strong>睡眠終了時間:</strong> <%= @sleep_m.end_time %></p>
-      <p><strong>睡眠の質:</strong> <%= @sleep_m.quality %></p>
-      <p><strong>メモ:</strong> <%= @sleep_m.memo %></p>
-    </div>
+        <% date_shown = false %>
+        <% @sleep_ms_data.each do |sleep_m| %>
+          <% if !date_shown %>
+            <h3>日付: <%= sleep_m.record_date %></h3>
+            <% date_shown = true %>
+          <% end %>
+          <div class="sleep-details">
+            <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time %></p>
+            <p><strong>睡眠終了時間:</strong> <%= sleep_m.end_time %></p>
+            <p><strong>睡眠の質:</strong> <%= sleep_m.quality %></p>
+            <p><strong>メモ:</strong> <%= sleep_m.memo %></p>
+            
+            <%= link_to "編集", edit_sleep_m_path(sleep_m), class: "btn btn-primary" %>
+            <%= link_to "削除", sleep_m_path(sleep_m), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger" %>
+          </div>
+        <% end %>
 
-    <%= link_to "編集", edit_sleep_m_path(@sleep_m), class: :prototype__btn %>
-    <%= link_to "戻る", sleep_ms_path, class: "btn btn-secondary" %>
-    <%= link_to "削除", sleep_m_path(@sleep_m.id), data: { turbo_method: :delete },class: :prototype__btn %>
+        <%= link_to "戻る", sleep_ms_path, class: "btn btn-secondary" %>
   </div>
 </main>

@@ -2,8 +2,9 @@
   <div class="inner">
     <div class="form__wrapper">
      <h2>睡眠記録を編集</h2>
-     <%= render partial: "form", locals: { sleep_m: @sleep_m } %>
-     <%= link_to "一覧に戻る", sleeps_path, class: "btn btn-secondary" %>
+      <%= render partial: "form", locals: { sleep_m: @sleep_m } %>
+      
+     <%= link_to "詳細に戻る", sleep_m_path(@sleep_m), class: "btn btn-secondary" %>
     </div>
   </div>
 </main>
