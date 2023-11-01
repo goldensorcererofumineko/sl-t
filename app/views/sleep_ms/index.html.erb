@@ -8,7 +8,16 @@
     <% end %>
     <h2>睡眠記録一覧</h2>
     <div class="card__wrapper">
-       <%= render partial: "sleep",locals: { sleep_m: @sleep_ms }  %>
+    <% @sleep_ms.each do |sleep_m| %>
+      <div class="card">
+        <h3><%= sleep_m.record_date %></h3>
+        <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time.strftime('%H:%M:%S') %></p>
+        <p><strong>睡眠終了時間:</strong> <%= sleep_m.end_time.strftime('%H:%M:%S') %></p>
+        <!-- 他のデータを表示 -->
+
+        <%= link_to "詳細情報", sleep_m_path(sleep_m), class: "btn btn-primary" %>
+      </div>
+    <% end %>
     </div>
   </div>
 </main>
