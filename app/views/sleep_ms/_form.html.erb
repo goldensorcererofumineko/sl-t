@@ -2,18 +2,13 @@
   <%= render 'layouts/error_messages', model: f.object %>
 
   <div class="field">
-    <%= f.label :record_date, "睡眠日" %><br />
-    <%= f.date_field :record_date, class: "form__text", id: "sleep_m_record_date" %>
-  </div>
-
-  <div class="field">
     <%= f.label :set_time, "睡眠開始時間" %><br />
-    <%= f.time_field :set_time, class: "form__text", id: "sleep_m_set_time" %>
+    <%= f.datetime_field :set_time, class: "form__text", id: "sleep_m_set_time" %>
   </div>
 
   <div class="field">
     <%= f.label :end_time, "睡眠終了時間" %><br />
-    <%= f.time_field :end_time, class: "form__text", id: "sleep_m_end_time" %>
+    <%= f.datetime_field :end_time, class: "form__text", id: "sleep_m_end_time" %>
   </div>
 
   <div class="field">
@@ -31,3 +26,14 @@
   </div>
 <% end %>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const set_timeInput = document.getElementById("sleep_m_set_time");
+    const end_timeInput = document.getElementById("sleep_m_end_time");
+
+    set_timeInput.addEventListener("input", function() {
+      const startTime = set_timeInput.value;
+      end_timeInput.value = startTime; // 睡眠終了時間を設定
+    });
+  });
+</script>

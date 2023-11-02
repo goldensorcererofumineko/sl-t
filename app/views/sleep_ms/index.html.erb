@@ -7,20 +7,10 @@
        <h2>平均睡眠時間: <%= @average_sleep_duration_minutes %> 時間</h2>
     <% end %>
     <h2>睡眠記録一覧</h2>
-    <div class="card__wrapper">
-      <% grouped_sleep_data = @sleep_ms.group_by { |sleep_m| sleep_m.record_date } %>
-      <% grouped_sleep_data.each do |date, sleep_data| %>
-      <div class="card">
-          <h3><%= date %></h3>
-          <% sleep_data.each do |sleep_m| %>
+          <% @sleep_ms.each do |sleep_m| %>
             <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time.strftime('%H:%M:%S') %></p>
             <p><strong>睡眠終了時間:</strong> <%= sleep_m.end_time.strftime('%H:%M:%S') %></p>
-            <!-- 他のデータを表示 -->
-            <hr> <!-- オプション: データごとに区切り線を追加 -->
           <% end %>
-        <%= link_to "詳細情報", sleep_m_path(sleep_data), class: "btn btn-primary" %>
-      </div>
-    <% end %>
-    </div>
+        <%= link_to "詳細情報", sleep_m_path(@sleep_ms), class: "btn btn-primary" %>
   </div>
 </main>
