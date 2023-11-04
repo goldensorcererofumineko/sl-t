@@ -1,16 +1,16 @@
 <main class="main">
+  <div class="calendar-container">
+    <%= month_calendar sleep_ms: @sleep_ms do |date, sleep_ms| %>
+      <%= date.day %>
+    <% end %>
+  </div>
   <div class="inner">
     <% if user_signed_in? %>
       <div class="greeting">
         <%= "こんにちは、#{current_user.nickname} さん"  %>
       </div> 
-       <h2>平均睡眠時間: <%= @average_sleep_duration_minutes %> 時間</h2>
+      <h2>平均睡眠時間: <%= @average_sleep_duration_minutes %> 時間</h2>
     <% end %>
     <h2>睡眠記録一覧</h2>
-          <% @sleep_ms.each do |sleep_m| %>
-            <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time.strftime('%H:%M:%S') %></p>
-            <p><strong>睡眠終了時間:</strong> <%= sleep_m.end_time.strftime('%H:%M:%S') %></p>
-          <% end %>
-        <%= link_to "詳細情報", sleep_m_path(@sleep_ms), class: "btn btn-primary" %>
   </div>
 </main>
