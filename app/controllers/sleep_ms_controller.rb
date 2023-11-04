@@ -3,8 +3,11 @@ class SleepMsController < ApplicationController
   before_action :set_sleep, only: [:show, :edit, :update, :destroy]
   def index
     @sleep_ms = SleepM.all
-    if @sleep_ms.present? 
-      total_sleep_duration = @sleep_ms.sum { |sleep_m| sleep_m.sleep_duration.to_i }
+    if @sleep_ms.present?
+      total_sleep_duration = 0
+      @sleep_ms.each do |sleep_m|
+        total_sleep_duration += sleep_m.sleep_duration_minutes
+      end
       average_sleep_duration_minutes = total_sleep_duration / @sleep_ms.length
       @average_sleep_duration_hours = average_sleep_duration_minutes / 60
       @average_sleep_duration_minutes = average_sleep_duration_minutes % 60
@@ -13,6 +16,7 @@ class SleepMsController < ApplicationController
       @average_sleep_duration_minutes = 0
     end
   end
+  
   def show
     @sleep_ms_data = SleepM.where(record_date: @sleep_m.record_date).order(set_time: :asc)
 

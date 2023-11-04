@@ -9,7 +9,11 @@
       <div class="greeting">
         <%= "こんにちは、#{current_user.nickname} さん"  %>
       </div> 
-      <h2>平均睡眠時間: <%= @average_sleep_duration_minutes %> 時間</h2>
+      <% if @average_sleep_duration_hours > 0 %>
+        平均睡眠時間: <%= @average_sleep_duration_hours %>時間<%= @average_sleep_duration_minutes %>分
+      <% else %>
+        平均睡眠時間: <%= @average_sleep_duration_minutes %>分
+      <% end %>
     <% end %>
     <h2>睡眠記録一覧</h2>
   </div>
