@@ -9,12 +9,16 @@
       <div class="greeting">
         <%= "こんにちは、#{current_user.nickname} さん"  %>
       </div> 
-      <% if @average_sleep_duration_hours > 0 %>
-        平均睡眠時間: <%= @average_sleep_duration_hours %>時間<%= @average_sleep_duration_minutes %>分
-      <% else %>
-        平均睡眠時間: <%= @average_sleep_duration_minutes %>分
+      <% if @monthly_average_sleep.present? %>
+        <h2>月ごとの平均睡眠時間</h2>
+        <ul>
+          <% @monthly_average_sleep.each do |month, avg_sleep| %>
+            <li>
+              <%= month.strftime("%Y年%m月") %>: <%= avg_sleep[:hours] %>時間<%= avg_sleep[:minutes] %>分
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     <% end %>
-    <h2>睡眠記録一覧</h2>
   </div>
 </main>

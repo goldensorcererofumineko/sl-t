@@ -15,7 +15,31 @@ class SleepMsController < ApplicationController
       @average_sleep_duration_hours = 0
       @average_sleep_duration_minutes = 0
     end
+  
+    # 以下のコードで月ごとの平均睡眠時間を計算
+    grouped_sleep_data = @sleep_ms.group_by { |sleep_m| sleep_m.set_time.beginning_of_month }
+    @monthly_average_sleep = {}
+    grouped_sleep_data.each do |month, sleep_data|
+      total_sleep_duration = sleep_data.sum { |sleep_m| sleep_m.sleep_duration_minutes }
+      average_sleep_duration_minutes = total_sleep_duration / sleep_data.length
+      @monthly_average_sleep[month] = {
+        hours: average_sleep_duration_minutes / 60,
+        minutes: average_sleep_duration_minutes % 60
+      }
+    end
+
+    grouped_sleep_data = @sleep_ms.group_by { |sleep_m| sleep_m.set_time.beginning_of_week }
+    @weekly_average_sleep = {}
+    grouped_sleep_data.each do |week, sleep_data|
+      total_sleep_duration = sleep_data.sum { |sleep_m| sleep_m.sleep_duration_minutes }
+      average_sleep_duration_minutes = total_sleep_duration / sleep_data.length
+      @weekly_average_sleep[week] = {
+        hours: average_sleep_duration_minutes / 60,
+        minutes: average_sleep_duration_minutes % 60
+      }
+    end
   end
+  
   
   def show
     @sleep_ms_data = SleepM.where(record_date: @sleep_m.record_date).order(set_time: :asc)
