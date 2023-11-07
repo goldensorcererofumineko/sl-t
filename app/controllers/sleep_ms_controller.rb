@@ -44,7 +44,7 @@ class SleepMsController < ApplicationController
   def show
     @sleep_ms_data = SleepM.where(record_date: @sleep_m.record_date).order(set_time: :asc)
 
-    # 他の必要な処理を追加
+    # 他の必要な処理
   
     respond_to do |format|
       format.html

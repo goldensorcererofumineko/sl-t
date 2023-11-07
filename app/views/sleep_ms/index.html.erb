@@ -1,7 +1,9 @@
 <main class="main">
   <div class="calendar-container">
     <%= month_calendar sleep_ms: @sleep_ms do |date, sleep_ms| %>
-      <%= date.day %>
+      <div class="<%= 'saturday' if date.saturday? %><%= 'sunday' if date.sunday? %>">
+        <%= date.day %>
+      </div>
     <% end %>
   </div>
   <div class="inner">
@@ -9,16 +11,15 @@
       <div class="greeting">
         <%= "こんにちは、#{current_user.nickname} さん"  %>
       </div> 
-      <% if @monthly_average_sleep.present? %>
-        <h2>月ごとの平均睡眠時間</h2>
-        <ul>
-          <% @monthly_average_sleep.each do |month, avg_sleep| %>
-            <li>
-              <%= month.strftime("%Y年%m月") %>: <%= avg_sleep[:hours] %>時間<%= avg_sleep[:minutes] %>分
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
+        <% if @monthly_average_sleep.present? %>
+          <ul class="monthly-average-sleep">
+            <% @monthly_average_sleep.each do |month, avg_sleep| %>
+              <li>
+                <%= month.strftime("%Y年%m月の平均睡眠時間") %>: <%= avg_sleep[:hours] %>時間<%= avg_sleep[:minutes] %>分
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
     <% end %>
   </div>
 </main>
