@@ -15,16 +15,20 @@
     <header class="header">
       <div class="inner_o">
         <div class="nav">
-          <% if @weekly_average_sleep.present? %>
-            <ul class="weekly-average-sleep">
-              <% @weekly_average_sleep.each do |week, avg_sleep| %>
-                <li>
-                  <%= week.strftime("今週の平均睡眠時間") %>: <%= avg_sleep[:hours] %>時間<%= avg_sleep[:minutes] %>分
-                </li>
-              <% end %>
-            </ul>
+        <% if user_signed_in? %>
+            <% if @weekly_average_sleep.present? %>
+              <ul class="weekly-average-sleep">
+                <% @weekly_average_sleep.each do |week, avg_sleep| %>
+                  <li>
+                    <%= week.strftime("今週の平均睡眠時間") %>: <%= avg_sleep[:hours] %>時間<%= avg_sleep[:minutes] %>分
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
           <% end %>
-          <h1 class="app-title">睡眠の重要性</h1>
+            <% if !user_signed_in? %>
+                <h2 class="app-title">睡眠の重要性</h2>
+            <% end %>
           <div class="nav__left">
             <%= link_to image_tag("sleep_man.png", class: :"logo rotate-icon"), root_path %>
           </div>
