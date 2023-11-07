@@ -84,7 +84,7 @@ a {
 /*追加*/
 .calendar-container {
   color: #4faae3;
-  background-color: #4bffba;
+  background-color: #dcfef1;
 }
 .nav {
   width: 100%;
@@ -178,3 +178,9 @@ a {
 .sunday {
   color: red; /* 日曜日のスタイル */
 }
+
+.centered {
+  margin: 0 auto;
+  display: block;
+}
+

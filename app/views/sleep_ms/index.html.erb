@@ -1,5 +1,5 @@
 <main class="main">
-  <div class="calendar-container">
+  <div class="calendar-container <%= user_signed_in? ? 'left-half' : 'centered' %>">
     <%= month_calendar sleep_ms: @sleep_ms do |date, sleep_ms| %>
       <div class="<%= 'saturday' if date.saturday? %><%= 'sunday' if date.sunday? %>">
         <%= date.day %>
