@@ -43,7 +43,6 @@ a {
 .header {
   color: #f22c2c;
   background-color: #f1f8fe;
-  margin-bottom: 48px;
   padding: 20px 0;
   height: 248px;
 
@@ -69,9 +68,23 @@ a {
   gap: 10px; /* グリッドアイテム間のマージン */
 }
 
+.page-heading {
+  font-size: 36px;
+  color: #8783f9;
+  font-weight: bold;
+  text-align: center; 
+}
+
 .inner {
   width: 824px;
+  margin-top: 48px;
   margin-right: 10px;
+  background-color: rgba(68, 244, 238, 0.6);
+}
+
+.inner-form {
+  width: 824px;
+  margin: auto;
   background-color: rgba(68, 244, 238, 0.6);
 }
 
@@ -85,6 +98,7 @@ a {
 .calendar-container {
   color: #4faae3;
   background-color: #dcfef1;
+  margin-top: 48px;
 }
 .nav {
   width: 100%;
@@ -132,12 +146,26 @@ a {
   width: 50%;
 }
 
+.field label {
+  font-size: 18px; /* ラベルのフォントサイズを大きくする */
+}
+
+.field textarea {
+  font-size: 18px; /* メモ入力フィールドのフォントサイズを大きくする */
+  height: 150px; /* メモ入力フィールドの高さを大きくする */
+}
+
 .field{
-  margin: 10px 0;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column; /* 子要素を縦に配置 */
+  align-items: center; /* 子要素を水平方向に中央に配置 */
 }
 
 .actions{
   margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 .form__btn{
@@ -182,5 +210,6 @@ a {
 .centered {
   margin: 0 auto;
   display: block;
+  width: 800px;
+  height: 600px;
 }
-
