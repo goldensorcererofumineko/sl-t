@@ -19,9 +19,11 @@
             <% if @weekly_average_sleep.present? %>
               <ul class="weekly-average-sleep">
                 <% @weekly_average_sleep.each do |week, avg_sleep| %>
-                  <li>
-                    <%= week.strftime("今週の平均睡眠時間") %>: <%= avg_sleep[:hours] %>時間<%= avg_sleep[:minutes] %>分
-                  </li>
+                  <% if week >= Date.current.at_beginning_of_week && week <= Date.current.at_end_of_week %>
+                    <li>
+                      <%= week.strftime("今週の平均睡眠時間") %>: <%= avg_sleep[:hours] %>時間<%= avg_sleep[:minutes] %>分
+                    </li>
+                  <% end %>
                 <% end %>
               </ul>
             <% end %>
