@@ -19,6 +19,10 @@
               </li>
             <% end %>
           </ul>
+          <h2>詳細一覧</h2>
+          <% @sleep_ms.each do |sleep_m| %>
+            <p><%= sleep_m.set_time %> - <%= link_to "詳細を見る", sleep_m_path(sleep_m) %></p>
+          <% end %>
         <% end %>
    </div>
   <% end %>
