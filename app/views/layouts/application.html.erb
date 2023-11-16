@@ -27,6 +27,16 @@
                 <% end %>
               </ul>
             <% end %>
+            <% if @weekly_quality_counts.present? %>
+              <p>今週の睡眠の質の回数</p>
+              <ul>
+                <% SleepM.qualities.keys.each do |quality| %>
+                  <li><%= "#{quality}: #{@weekly_quality_counts[quality].to_i}" %>回</li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p>今週のデータはありません。</p>
+            <% end %>
           <% end %>
             <% if !user_signed_in? %>
                 <h2 class="app-title">睡眠の重要性</h2>

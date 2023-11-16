@@ -15,6 +15,8 @@ class SleepMsController < ApplicationController
       @average_sleep_duration_hours = 0
       @average_sleep_duration_minutes = 0
     end
+    @weekly_quality_counts = SleepM.where(created_at: Time.now.beginning_of_week..Time.now.end_of_week)
+    .group(:quality).count
   
     # 以下のコードで月ごとの平均睡眠時間を計算
     grouped_sleep_data = @sleep_ms.group_by { |sleep_m| sleep_m.set_time.beginning_of_month }
