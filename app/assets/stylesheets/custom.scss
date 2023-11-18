@@ -89,9 +89,8 @@ a {
 }
 
 .weekly-average-sleep {
-  font-size: 16px; /* フォントサイズを変更 */
-  color: #f72e6eb5; /* テキストカラーを変更 */
-  /* その他のスタイルを追加 */
+  font-size: 16px; 
+  color: #f72e6eb5; 
 }
 
 /*追加*/
@@ -147,19 +146,19 @@ a {
 }
 
 .field label {
-  font-size: 18px; /* ラベルのフォントサイズを大きくする */
+  font-size: 18px; 
 }
 
 .field textarea {
-  font-size: 18px; /* メモ入力フィールドのフォントサイズを大きくする */
-  height: 150px; /* メモ入力フィールドの高さを大きくする */
+  font-size: 18px; 
+  height: 150px; 
 }
 
 .field{
   margin: 10px auto;
   display: flex;
-  flex-direction: column; /* 子要素を縦に配置 */
-  align-items: center; /* 子要素を水平方向に中央に配置 */
+  flex-direction: column; 
+  align-items: center; 
 }
 
 .actions{
@@ -198,7 +197,6 @@ a {
   font-size: 20px;
 }
 
-/* app/assets/stylesheets/custom_calendar.css */
 .saturday {
   color: blue; /* 土曜日のスタイル */
 }
