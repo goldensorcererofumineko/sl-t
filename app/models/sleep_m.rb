@@ -11,6 +11,7 @@ class SleepM < ApplicationRecord
   validates :set_time, presence: true
   validates :end_time, presence: true
   validate :start_time_must_be_earlier_than_end_time
+  validate :date_must_be_today_or_earlier
 
   private
 
@@ -18,6 +19,14 @@ class SleepM < ApplicationRecord
     return unless set_time && end_time
     if set_time >= end_time
       errors.add(:set_time, "は終了時間よりも早い時間に設定してください")
+    end
+  end
+
+  def date_must_be_today_or_earlier
+    return unless set_time
+
+    if set_time.to_date > Date.tomorrow
+      errors.add(:set_time, "は今日までの日にちを選択してください")
     end
   end
 
