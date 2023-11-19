@@ -34,8 +34,6 @@
                   <li><%= "#{quality}: #{@weekly_quality_counts[quality].to_i}" %>回</li>
                 <% end %>
               </ul>
-            <% else %>
-              <p>今週のデータはありません。</p>
             <% end %>
           <% end %>
             <% if !user_signed_in? %>
