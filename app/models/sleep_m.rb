@@ -12,6 +12,7 @@ class SleepM < ApplicationRecord
   validates :end_time, presence: true
   validate :start_time_must_be_earlier_than_end_time
   validate :date_must_be_today_or_earlier
+  validate :no_overlapping_records
 
   private
 
@@ -28,6 +29,17 @@ class SleepM < ApplicationRecord
     if set_time.to_date > Date.tomorrow
       errors.add(:set_time, "は今日までの日にちを選択してください")
     end
+  end
+
+  def no_overlapping_records
+    if overlaps_existing_record?
+      errors.add(:base, "同じ時間帯に記録が既に存在します")
+    end
+  end
+
+  def overlaps_existing_record?
+    existing_records = SleepM.where.not(id: self.id)
+    existing_records.any? { |record| overlaps?(record) }
   end
 
   def overlaps?(other_record)
