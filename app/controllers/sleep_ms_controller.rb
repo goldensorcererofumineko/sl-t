@@ -44,14 +44,16 @@ class SleepMsController < ApplicationController
   
   
   def show
-    @sleep_ms_data = SleepM.where(record_date: @sleep_m.record_date).order(set_time: :asc)
-
-    # 他の必要な処理
+    @sleep_m = SleepM.find(params[:id])
+    if @sleep_m.set_time
+      @sleep_ms_data = SleepM.where(set_time: @sleep_m.set_time.to_date).order(set_time: :asc)
+    else
+      @sleep_ms_data = []
+    end
   
     respond_to do |format|
       format.html
     end
-  
   end
 
   def new
@@ -73,7 +75,7 @@ class SleepMsController < ApplicationController
   def update
     @sleep_m = SleepM.find(params[:id])
     if @sleep_m.update(sleep_params)
-      redirect_to root_path
+      redirect_to sleep_m_path(@sleep_m)
     else
       render :edit
     end

@@ -2,16 +2,17 @@
   <div class="inner">
     <div class="sleep-details">
       <h2>睡眠記録詳細</h2>
-          <% end %>
-          <div class="sleep-details">
-            <p><strong>睡眠開始時間:</strong> <%= sleep_m.set_time.strftime('%H:%M:%S') %></p>
-            <p><strong>睡眠終了時間:</strong> <%= sleep_m.end_time.strftime('%H:%M:%S') %></p>
-            <p><strong>睡眠の質:</strong> <%= sleep_m.quality %></p>
-            <p><strong>メモ:</strong> <%= sleep_m.memo %></p>
-            <%= link_to "編集", edit_sleep_m_path(sleep_m), class: "btn btn-primary" %>
-            <%= link_to "削除", sleep_m_path(sleep_m), data: { turbo_method: :delete }, class: "btn btn-danger" %>
-          </div>
-        <% end %>
+      <div class="sleep-details">
+        <p><strong>日付:</strong> <%= @sleep_m.set_time.to_date.strftime('%Y年%m月%d日') %></p>
+        <p><strong>睡眠開始時間:</strong> <%= @sleep_m.set_time.strftime('%H:%M:%S') %></p>
+        <p><strong>睡眠終了時間:</strong> <%= @sleep_m.end_time.strftime('%H:%M:%S') %></p>
+        <p><strong>睡眠の質:</strong> <%= @sleep_m.quality %></p>
+        <p><strong>メモ:</strong> <%= @sleep_m.memo %></p>
+        <%= link_to "編集", edit_sleep_m_path(@sleep_m), class: "btn btn-primary" %>
         <%= link_to "戻る", sleep_ms_path, class: "btn btn-secondary" %>
+        <%= link_to "削除", sleep_m_path(@sleep_m), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+      </div>
+    </div>
   </div>
 </main>
+
