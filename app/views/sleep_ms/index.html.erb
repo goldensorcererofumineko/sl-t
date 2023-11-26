@@ -1,3 +1,7 @@
+<div class="random text-center">
+  <% random_messages = ["睡眠時間は1時間30分刻みを意識しましょう", "睡眠前のカフェイン摂取やスマホなどを見ることは睡眠の質低下に繋がりやすいです", "理想はリラックスして眠りに就くこと、運動や勉強から少し時間を置いて寝ましょう"] %>
+  <h3><%= random_messages.sample %></h3>
+</div>
 <main class="main">
   <div class="calendar-container <%= user_signed_in? ? 'left-half' : 'centered' %>">
     <%= month_calendar sleep_ms: @sleep_ms do |date, sleep_ms| %>
